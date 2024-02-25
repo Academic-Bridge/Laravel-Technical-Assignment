@@ -8,6 +8,7 @@ use App\Models\Attendance;
 use Illuminate\Support\Facades\Log;
 use App\Exports\AttendancesExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 
 use Validator;
 
@@ -49,14 +50,21 @@ class AttendanceController extends Controller
 
         return response()->json($attendances);
     }
-    // using maatwebsite/excel create method to export attendance records to excel
-    // app/Http/Controllers/AttendanceController.php
 
 
-
-    public function export()
+    public function exportExcel()
     {
         return Excel::download(new AttendancesExport, 'attendance.xlsx');
+    }
+
+
+    public function exportPdf()
+    {
+        $attendances = Attendance::all();
+
+        $pdf = PDF::loadView('pdf.attendances', ['attendances' => $attendances]);
+
+        return $pdf->download('attendances.pdf');
     }
 
 }
