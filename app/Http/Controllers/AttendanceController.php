@@ -22,6 +22,14 @@ class AttendanceController extends Controller
     // store method to create a new attendance record
 
 
+    /**
+     * Stores a new attendance record in the database.
+     * 
+     * Validates the arrivalTime, departureTime and employeeId fields. 
+     * Creates a new Attendance model instance and saves it to the database.
+     * 
+     * Redirects back with a success message on save, or renders form with errors if validation fails.
+     */
     public function store(Request $request)
     {
         // log the request to the console
@@ -48,6 +56,11 @@ class AttendanceController extends Controller
         return redirect()->back()->with('message', 'Attendance recorded successfully');
     }
     // method to get all attendance records
+    /**
+     * Get all attendance records.
+     *
+     * @return \Illuminate\Http\JsonResponse JSON response containing all attendance records. 
+     */
     public function index()
     {
         $attendances = Attendance::all();
@@ -56,6 +69,9 @@ class AttendanceController extends Controller
     }
 
 
+    /**
+     * Exports the attendance records to an Excel file.
+     */
     public function exportExcel()
     {
         return Excel::download(new AttendancesExport, 'attendance.xlsx');
@@ -64,6 +80,11 @@ class AttendanceController extends Controller
 
 
 
+    /**
+     * Exports the attendance records to a PDF file.
+     *
+     * @return Response Stream containing the generated PDF file.
+     */
     public function exportPdf()
     {
         $attendances = Attendance::all();
