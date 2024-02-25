@@ -13,7 +13,14 @@ vendor/bin/sail up
 ./vendor/bin/sail up
  
 ./vendor/bin/sail composer require laravel/octane
+
 ``
+# Front-end
+``bash
+npm install
+npm run dev
+```
+
 
 
 # API Testing in postman
