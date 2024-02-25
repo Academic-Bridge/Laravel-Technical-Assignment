@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Log;
+use App\Exports\AttendancesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 use Validator;
 
@@ -46,6 +48,15 @@ class AttendanceController extends Controller
         $attendances = Attendance::all();
 
         return response()->json($attendances);
+    }
+    // using maatwebsite/excel create method to export attendance records to excel
+    // app/Http/Controllers/AttendanceController.php
+
+
+
+    public function export()
+    {
+        return Excel::download(new AttendancesExport, 'attendance.xlsx');
     }
 
 }

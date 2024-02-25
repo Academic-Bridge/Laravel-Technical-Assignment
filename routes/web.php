@@ -35,6 +35,8 @@ Route::post('/attendance', [AttendanceController::class, 'store'])
 
 Route::middleware('auth:sanctum')->get('/attendance', [AttendanceController::class, 'index']);
 
+Route::get('attendance/export', [AttendanceController::class, 'export']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

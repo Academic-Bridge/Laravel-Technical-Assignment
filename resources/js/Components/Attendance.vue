@@ -2,7 +2,7 @@
     <div>
         <div>
             <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
-                <button
+                <button @click="exportToExcel"
                     style="margin-right: 5px; padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Export
                     to Excel</button>
                 <button
@@ -34,13 +34,42 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: {
-        attendances: {
-            type: Array,
-            default: () => [],
-        },
+<script setup>
+import { defineProps } from 'vue';
+
+// authenticate our SPA page first with sunctum
+axios.get('/sanctum/csrf-cookie').then(response => {
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = response.data.csrfToken;
+    form.post(route('login'), {
+        onSuccess: () => console.log('authenticated SPA'),
+    });
+});
+
+const props = defineProps({
+    attendances: {
+        type: Array,
+        default: () => [],
     },
+});
+// on export excel button click
+// call endPoint to export to excel, this endpoint is protected by sunctum
+
+const exportToExcel = async () => {
+    try {
+        const response = await axios.get('/attendance/export', {
+            responseType: 'blob', // Important for handling the binary Excel file
+        });
+
+        // Create a blob from the response for download
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'attendances.xlsx'); // Set the file name
+        document.body.appendChild(link);
+        link.click();
+    } catch (error) {
+        console.error('Error exporting to Excel:', error);
+    }
 };
+// Your existing code...
 </script>
