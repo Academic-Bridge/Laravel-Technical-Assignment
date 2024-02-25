@@ -23,10 +23,14 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
-
+    - name: Prepare Laravel Application
+      run: |
+        cp .env.test .env
+        php artisan key:generate
     - name: Run tests
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: ":memory:"
         APP_KEY: ${{ secrets.APP_KEY }}
-      run: vendor/bin/phpunit --testsuite Unit
+      # run: vendor/bin/phpunit --testsuite Unit
+      run: vendor/bin/phpunit tests/
