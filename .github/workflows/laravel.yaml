@@ -27,6 +27,12 @@ jobs:
       run: |
         cp .env.test .env
         php artisan key:generate
+    - name: Install Node.js dependencies
+      run: npm ci
+
+    - name: Build assets
+      run: npm run production
+      
     - name: Run tests
       env:
         DB_CONNECTION: sqlite
