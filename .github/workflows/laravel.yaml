@@ -31,8 +31,8 @@ jobs:
       run: npm ci
 
     - name: Build assets
-      run: npm run production
-      
+      run: npm run build
+
     - name: Run tests
       env:
         DB_CONNECTION: sqlite
