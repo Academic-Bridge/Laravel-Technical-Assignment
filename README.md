@@ -21,7 +21,7 @@ vendor/bin/sail up
 ```
 # Swager open APi doc
 
-- Once the app is running, you can access the swagger API doc at http://localhost/api/documentation
+- Once the app is running, you can access the swagger API doc at http://localhost/docs/api
 
 # Front-end
 ```bash
