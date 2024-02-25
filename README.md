@@ -4,19 +4,19 @@
 - Run in Vs code with remote development environment
 - then run
 
-``bash
+```bash
 vendor/bin/sail artisan migrate .
 vendor/bin/sail up
-``
+```
 # Make sure to use octane to speed up the application
-``bash
+```bash
 ./vendor/bin/sail up
  
 ./vendor/bin/sail composer require laravel/octane
 
-``
+```
 # Front-end
-``bash
+```bash
 npm install
 npm run dev
 ```
