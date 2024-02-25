@@ -21,7 +21,9 @@ vendor/bin/sail up
 ```
 # Swager open APi doc
 
-- Once the app is running, you can access the swagger API doc at http://localhost/docs/api
+- Once the app is running, you can access the Swagger API doc at http://localhost/docs/api
+<img width="958" alt="image" src="https://github.com/richard457/Laravel-Technical-Assignment/assets/8529700/1d94c486-ed01-48a4-a5a7-a79e4326adf4">
+
 
 # Front-end
 ```bash
