@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Attendance;
+use App\Models\User;
 
 class AttendanceTest extends TestCase
 {
@@ -12,7 +13,11 @@ class AttendanceTest extends TestCase
 
     public function testStore()
     {
-        $response = $this->postJson('/attendance', [
+        // Create a user
+        $user = User::factory()->create();
+
+        // Authenticate as the user
+        $response = $this->actingAs($user)->postJson('/attendance', [
             'employeeId' => 1,
             'arrivalTime' => '2022-01-01 08:00:00',
             'departureTime' => '2022-01-01 16:00:00',
