@@ -36,7 +36,7 @@ Route::post('/attendance', [AttendanceController::class, 'store'])
 Route::middleware('auth:sanctum')->get('/attendance', [AttendanceController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('attendance/export', [AttendanceController::class, 'exportExcel']);
-Route::get('attendance/export/pdf', [AttendanceController::class, 'exportPdf']);
+Route::middleware('auth:sanctum')->get('attendance/export/pdf', [AttendanceController::class, 'exportPdf']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

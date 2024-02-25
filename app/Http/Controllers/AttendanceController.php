@@ -8,8 +8,12 @@ use App\Models\Attendance;
 use Illuminate\Support\Facades\Log;
 use App\Exports\AttendancesExport;
 use Maatwebsite\Excel\Facades\Excel;
-use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
-
+// could not make it to make snappy work, it require
+// downloading some binary and to my research on amd64 machine is only disto
+// supported and I don't have it.
+// use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Validator;
 
 class AttendanceController extends Controller
@@ -58,13 +62,28 @@ class AttendanceController extends Controller
     }
 
 
+
+
     public function exportPdf()
     {
         $attendances = Attendance::all();
 
-        $pdf = PDF::loadView('pdf.attendances', ['attendances' => $attendances]);
+        $html = view('pdf.attendances', ['attendances' => $attendances])->render();
 
-        return $pdf->download('attendances.pdf');
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf(new Options(['defaultFont' => 'Arial']));
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        return $dompdf->stream('attendances.pdf');
     }
 
 }
