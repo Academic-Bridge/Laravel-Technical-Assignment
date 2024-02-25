@@ -30,6 +30,7 @@ class AttendanceController extends Controller
      * 
      * Redirects back with a success message on save, or renders form with errors if validation fails.
      */
+
     public function store(Request $request)
     {
         // log the request to the console
