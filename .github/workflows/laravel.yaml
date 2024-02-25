@@ -28,10 +28,10 @@ jobs:
         cp .env.test .env
         php artisan key:generate
     - name: Code Climate Setup
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter && chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
-          
+      run: |
+        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter && chmod +x ./cc-test-reporter
+        ./cc-test-reporter before-build
+
     - name: Install Node.js dependencies
       run: npm ci
 
