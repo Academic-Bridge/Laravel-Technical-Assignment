@@ -14,6 +14,8 @@ use Maatwebsite\Excel\Facades\Excel;
 // use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use App\Mail\AttendanceRecorded;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 
 class AttendanceController extends Controller
@@ -53,6 +55,11 @@ class AttendanceController extends Controller
         $attendance->arrival_time = $request->arrivalTime;
         $attendance->departure_time = $request->departureTime;
         $attendance->save();
+
+        // TODO: Send email(using queues) to the employee when an attendance record is made
+
+        /// This will queue the email meaning it will not block the request
+        Mail::to($request->employeeId)->queue(new AttendanceRecorded($attendance));
 
         return redirect()->back()->with('message', 'Attendance recorded successfully');
     }

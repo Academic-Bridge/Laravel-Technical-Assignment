@@ -19,6 +19,10 @@ vendor/bin/sail up
 ./vendor/bin/sail artisan octane:install --server=frankenphp
 
 ```
+
+# Access the Queued email
+- http://localhost:8025 
+
 # Swager open APi doc
 
 - Once the app is running, you can access the Swagger API doc at http://localhost/docs/api
