@@ -1,44 +1,40 @@
-# Laravel Technical Assignment
+# How to Run the project
+- First ensure you have Docker installed and if you are on windows
+- Ensure you have wsl2 installed
+- Run in Vs code with remote development environment
+- then run
 
-# TO BE SUBMITTED BY 11:59 PM ON FEBRUARY 23, 2024
+```bash
+vendor/bin/sail artisan migrate .
+vendor/bin/sail up
+```
+# Make sure to use octane to speed up the application
+- You might need to cancel sail up after the command to configure octane then re-run it again for
+- the app to reflect to binaries required for octane
+```bash
+./vendor/bin/sail up
+ 
+./vendor/bin/sail composer require laravel/octane
 
-## Description
+./vendor/bin/sail artisan octane:install --server=frankenphp
 
-This assignment will help in assessing your technical skills. From ^php8.0 syntax to code structure, appropriate coding principles and design patterns, and last but not least proper test coverage.
+```
 
-## Project
+# Access the Queued email
+- http://localhost:8025 
 
-An employee management software, nothing fancy it's just a simple API with a little bit of advanced features to showcase your skills😎 and knowledge of the Laravel framework.
+# Swager open APi doc
 
-## Stack/Tools
+- Once the app is running, you can access the Swagger API doc at http://localhost/docs/api
+<img width="958" alt="image" src="https://github.com/richard457/Laravel-Technical-Assignment/assets/8529700/1d94c486-ed01-48a4-a5a7-a79e4326adf4">
 
-- Laravel 10
-- PHP Unit/Pest for tests
-- Laravel Sail
-- Laravel Sanctum for authentication
-- laravel-snappy(for pdf reports)
-- Laravel Excel(for excel reports)
-- Mailpit
-- OpenApi specification(v3) for documentating **all** your endpoints. Use php 8 **attributes** NOT _docblocks_
 
-## Features
+# Front-end
+```bash
+npm install
+npm run dev
+```
 
-- Full authentication system using Sanctum(Register, Login, Logout, Forgot password, Password reset)
-- Employee CRUD, with minimum fields(names,email,employeeIdentifier,phoneNumber) all we care about is the thing to work
-- Attendance management, record when an employee arrives at the office and when they leave
-- Send email(using queues) to the employee when an attendance record is made
-- Generate attendance report(pdf & excel) with daily attendance data
-- Add a clear and concise readme that explains all the needed steps to deploy and run test of the project in a local environment
 
-## Bonus Points
-To make your application standout from the lot🤓😉
 
-- Add github actions that run all tests on PR events
-- Add Laravel Octane powered by FrankenPHP server
-
-## Submission
-- Share the link to your public github repository containing your code
-
-**All features must be fully and properly tested!!!**
-
-**PS: You don't need to wait until the deadline to submit your work😉**
+# API Testing in postman
