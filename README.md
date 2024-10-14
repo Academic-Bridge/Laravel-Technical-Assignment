@@ -1,10 +1,10 @@
 # Laravel Technical Assignment
 
-# TO BE SUBMITTED BY 11:59 PM ON FEBRUARY 23, 2024
+# TO BE SUBMITTED BY 23:59, ON THE 20th OF OCTOBER 2024
 
 ## Description
 
-This assignment will help in assessing your technical skills. From ^php8.0 syntax to code structure, appropriate coding principles and design patterns, and last but not least proper test coverage.
+This assignment will help in assessing your technical skills. From ^php8.0 syntax to code structure, appropriate coding principles and design patterns, and last but not least proper and relevant test coverage.
 
 ## Project
 
@@ -12,8 +12,8 @@ An employee management software, nothing fancy it's just a simple API with a lit
 
 ## Stack/Tools
 
-- Laravel 10
-- PHP Unit/Pest for tests
+- Laravel 11
+- PHP Unit / Pest for tests
 - Laravel Sail
 - Laravel Sanctum for authentication
 - laravel-snappy(for pdf reports)
