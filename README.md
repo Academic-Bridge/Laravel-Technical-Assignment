@@ -1,6 +1,6 @@
 # Laravel Technical Assignment
 
-# TO BE SUBMITTED BY 07:30, ON THE 26th OF JANUARY 2026
+# TO BE SUBMITTED BY 23:59, ON THE 8th OF FEBRUARY 2026
 
 ## Description
 
